@@ -13,12 +13,14 @@ Keep this updated? - No, and you shouldn't be using this blobs anyways.
 ---
 
 # Load
-cp ./*.ko /lib/modules/$(uname -r)/misc/
-
+```bash
+cp ./*.ko /lib/modules/$(uname -r)/misc/`
 depmod -a
-
 modprobe vmmon && modprobe vmnet
+```
 
 # Test?
 
+```bash
 lsmod | grep -q "^vmnet" && echo "vmnet OK" || echo "vmnet FAIL"
+```
