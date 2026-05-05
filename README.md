@@ -14,7 +14,7 @@ Keep this updated? - No, and you shouldn't be using this blobs anyways.
 
 # Load
 ```bash
-cp ./*.ko /lib/modules/$(uname -r)/misc/`
+cp ./*.ko /lib/modules/$(uname -r)/misc/
 depmod -a
 modprobe vmmon && modprobe vmnet
 ```
