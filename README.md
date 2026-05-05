@@ -14,7 +14,9 @@ Keep this updated? - No, and you shouldn't be using this blobs anyways.
 
 # Load
 cp ./*.ko /lib/modules/$(uname -r)/misc/
+
 depmod -a
+
 modprobe vmmon && modprobe vmnet
 
 # Test?
