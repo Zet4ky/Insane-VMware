@@ -33,9 +33,9 @@ Keep this updated? - No, and you shouldn't be using these blobs anyways.
 
 ## Load.
 ```bash
-sudo cp ./*.ko /lib/modules/$(uname -r)/misc/
-sudo depmod -a
-sudo modprobe vmmon && sudo modprobe vmnet
+run0 cp ./*.ko /lib/modules/$(uname -r)/misc/
+run0 depmod -a
+run0 modprobe vmmon && run0 modprobe vmnet
 ```
 
 ## Test.
@@ -51,5 +51,13 @@ VMware 25.x ships a *garbage* `libX11` that crashes on `XkbGetMapChanges` under 
 
 Replace libX11 with the system library:
 ```bash
-sudo cp /usr/lib64/libX11.so.6.4.0 /usr/lib/vmware/lib/libX11.so.6/libX11.so.6
+run0 cp /usr/lib64/libX11.so.6.4.0 /usr/lib/vmware/lib/libX11.so.6/libX11.so.6
+```
+
+## Note - SELinux
+Temporarily disable SELinux, then remember to re-enable it.
+```bash
+run0 setenforce 0
+# ... Things going on here ...
+run0 setenforce 1
 ```
