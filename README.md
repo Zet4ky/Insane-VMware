@@ -1,9 +1,9 @@
-# What?
+## What?
 VMware Workstation 25.0.1 kernel modules (vmmon + vmnet) compiled for Fedora 44 / **kernel 6.19.14-300.fc44.x86_64**
 
 Source: https://github.com/ngodn/vmware-vmmon-vmnet-linux-6.16.x.git
 
-# Manually compile the modules.
+## Manually compile the modules.
 #### Install the dependencies:
 ```bash
 dnf install -y kernel-headers kernel-devel gcc make git
@@ -21,30 +21,30 @@ bash repack_and_patch.sh
 ```
 
 
-# Why?
+## Why?
 - It's VMware's fault.
 - I don't want to compile this anymore.
 - Read the first one again.
 
-# Will you?
+## Will you?
 Keep this updated? - No, and you shouldn't be using these blobs anyways.
 
 ---
 
-# Load
+## Load
 ```bash
 sudo cp ./*.ko /lib/modules/$(uname -r)/misc/
 sudo depmod -a
 sudo modprobe vmmon && sudo modprobe vmnet
 ```
 
-# Test
+## Test
 ```bash
 lsmod | grep -q "^vmmon" && echo "vmmon OK" || echo "vmmon FAIL"
 lsmod | grep -q "^vmnet" && echo "vmnet OK" || echo "vmnet FAIL"
 ```
 
-# Fix - VMware crashes on XKB events (XWayland)
+## Fix - VMware crashes on XKB events (XWayland)
 *...VMware crashes when interacting with the VM...*
 
 VMware 25.x ships a *garbage* `libX11` that crashes on `XkbGetMapChanges` under XWayland.
