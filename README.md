@@ -8,19 +8,29 @@ Source: https://github.com/ngodn/vmware-vmmon-vmnet-linux-6.16.x.git
 - I don't want to compile this anymore.
 
 # Will you?
-Keep this updated? - No, and you shouldn't be using this blobs anyways.
+Keep this updated? - No, and you shouldn't be using these blobs anyways.
 
 ---
 
 # Load
 ```bash
-cp ./*.ko /lib/modules/$(uname -r)/misc/
-depmod -a
-modprobe vmmon && modprobe vmnet
+sudo cp ./*.ko /lib/modules/$(uname -r)/misc/
+sudo depmod -a
+sudo modprobe vmmon && sudo modprobe vmnet
 ```
 
-# Test?
-
+# Test
 ```bash
+lsmod | grep -q "^vmmon" && echo "vmmon OK" || echo "vmmon FAIL"
 lsmod | grep -q "^vmnet" && echo "vmnet OK" || echo "vmnet FAIL"
+```
+
+# Fix - VMware crashes on XKB events (XWayland)
+*... VMware crashes when interacting with the VM ...*
+
+VMware 25.x ships garbage `libX11` that crashes on `XkbGetMapChanges` under XWayland.
+
+Replace libX11 with the system library:
+```bash
+sudo cp /usr/lib64/libX11.so.6.4.0 /usr/lib/vmware/lib/libX11.so.6/libX11.so.6
 ```
