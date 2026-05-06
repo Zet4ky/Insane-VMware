@@ -22,7 +22,10 @@ bash repack_and_patch.sh
 
 
 ## Why?
+*...VMware needs to compile several kernel modules...*
+
 - It's VMware's fault.
+- VMware isn't smart enough to compile the kernel modules by itself.
 - I don't want to compile this anymore.
 - Read the first one again.
 
